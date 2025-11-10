@@ -1,0 +1,13 @@
+[project]
+name = "restaurant-api"
+version = "0.1.0"
+description = "This is for user to add restaurants through REST APIs"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi[standard]>=0.121.1",
+    "pydantic==2.8.0",
+    "restaurant-core"
+]
+[tool.uv.sources]
+restaurant_core = { path = "../../packages/restaurant-core", editable = true }
