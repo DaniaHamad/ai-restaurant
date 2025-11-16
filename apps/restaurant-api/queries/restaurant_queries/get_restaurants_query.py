@@ -1,0 +1,2 @@
+class GetRestaurantsQuery:
+    pass
