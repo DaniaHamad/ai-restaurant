@@ -9,5 +9,5 @@ class IRestaurantRepository (ABC):
         pass
 
     @abstractmethod
-    def get_list(self) -> List [Restaurant]:
+    def get_list(self) -> List[Restaurant]:
         pass
