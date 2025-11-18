@@ -1,0 +1,17 @@
+[project]
+name = "azure-openai"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "DaniaHamad" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "azure-ai-projects>=1.0.0",
+    "azure-identity>=1.25.1",
+]
+
+[build-system]
+requires = ["uv_build>=0.9.8,<0.10.0"]
+build-backend = "uv_build"
