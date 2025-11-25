@@ -1,19 +1,17 @@
 [project]
-name = "azure-openai"
+name = "restaurant-mcp"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 authors = [
-    { name = "DaniaHamad" }
+    { name = "DaniaHamad", email = "hamad.dania@gmail.com" }
 ]
 requires-python = ">=3.13"
 dependencies = [
-    "azure-ai-projects>=1.0.0",
-    "azure-identity>=1.25.1",
-    "mcp>=1.22.0",
-    "openai>=2.8.1",
-    "openai-agents>=0.6.1",
+    "mcp[cli]>=1.22.0",
+    "notion-client>=2.7.0",
     "python-dotenv>=1.2.1",
+    "requests>=2.32.5",
 ]
 
 [build-system]
