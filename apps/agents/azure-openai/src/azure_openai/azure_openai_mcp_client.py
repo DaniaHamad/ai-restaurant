@@ -1,5 +1,5 @@
 from dotenv import load_dotenv
-from openai import AzureOpenAI
+from openai import OpenAI
 import os
 import json
 from mcp import ClientSession, StdioServerParameters
@@ -15,10 +15,9 @@ class AzureOpenAIMCPClient:
         self.session: Optional[ClientSession] = None 
         self.exit_stack = AsyncExitStack()
 
-        self.azure_openai = AzureOpenAI(
+        self.azure_openai = OpenAI(
         api_key=os.getenv("AZURE_OPENAI_API_KEY"),
-        api_version=os.getenv("AZURE_OPENAI_API_VERSION"),
-        azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT")
+        base_url=os.getenv("AZURE_OPENAI_ENDPOINT")
     )
 
     async def connect_to_server(self, server_script_path: str):
@@ -87,9 +86,10 @@ class AzureOpenAIMCPClient:
                 tool_args = json.loads(tool_call.function.arguments)
                 result = await self.session.call_tool(tool_name, tool_args)
                 final_text.append(f"[Calling tool {tool_name} with args {tool_args}]")
+                final_text.append(f"Here's the result for the tool {tool_name} with args {tool_args}: {result.content}")
                 messages.append({
                     "role": "assistant",
-                    "content": result.content
+                    "content": f"Here's the result for the tool {tool_name} with args {tool_args}: {result.content}"
                 })
                 # Re-run the model with the new messages
                 response = self.azure_openai.chat.completions.create(
